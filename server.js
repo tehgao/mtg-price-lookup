@@ -5,7 +5,7 @@ const dotenv = require('dotenv');
 const cardprice = require('./cardprice');
 
 client.on('ready', () => {
-    console.log('I am ready!');
+    console.log('Starting server now...');
 });
 
 client.on('message', message => {
