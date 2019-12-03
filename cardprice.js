@@ -36,7 +36,7 @@ async function lookup(card, set, fmt) {
 }
 
 async function screencap(card, set, fmt) {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
     const page = await browser.newPage();
 
     let url = `https://www.mtggoldfish.com/price/${set.replace(/[ ]/g, "+")}/${card.replace(/[, ]+/g, "+")}#${fmt}`;
