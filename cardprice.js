@@ -1,8 +1,8 @@
 const puppeteer = require('puppeteer');
 const axios = require('axios');
-const fs = require('fs');
 
-async function cardprice(card, set, fmt) {
+
+async function lookup(card, set, fmt) {
     var url;
 
     if(set === "") {
@@ -16,7 +16,6 @@ async function cardprice(card, set, fmt) {
     let image = await screencap(res.data.name, res.data.set_name, fmt);
 
     if(image) {
-        console.log('returning image');
         return image;
     } else {
         return null;
@@ -33,10 +32,9 @@ async function screencap(card, set, fmt) {
 
     let image = await priceInfo.screenshot().then((result) => {
         console.log(`Captured price info for ${card} from ${set}`);
-        console.log(result);
         return result;
     }).catch(e => {
-        console.log(`Failed to capture price info for ${card} from ${set}`);
+        console.log(`Failed to capture price info for ${card} from ${set}: ${e}`);
         return false;
     });
 
@@ -45,14 +43,4 @@ async function screencap(card, set, fmt) {
     return image;
 }
 
-let output = cardprice("lightning bolt", "masters 25", "paper");
-
-output.then(function(img) {
-    fs.writeFile('test.png', img, function(e) {
-        if(e) {
-            console.log(e);
-        }
-    });
-})
-
-module.exports.cardprice = cardprice;
+module.exports.lookup = lookup;
