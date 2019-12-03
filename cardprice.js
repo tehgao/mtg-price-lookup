@@ -24,7 +24,7 @@ async function lookup(card, set, fmt) {
 
     let officialSet = res.data.set_name;
 
-    officialSet = officialSet.replace(/[^a-zA-Z ]/, "");
+    officialSet = officialSet.replace(/[^a-zA-Z0-9 ]/, "");
 
     let image = await screencap(officialCard, officialSet, fmt);
 
