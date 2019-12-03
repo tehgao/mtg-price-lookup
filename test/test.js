@@ -10,7 +10,10 @@ describe('Card Price', function () {
         var test_data = [
             ['lightning bolt', 'alpha'],
             ['brazen borrower', 'throne of eldraine'],
-            ['wear // tear', 'dragon\'s maze']
+            ['wear // tear', 'dragon\'s maze'],
+            ['lightning bolt', ''],
+            ['Borrowing 100,000 Arrows', 'masters 25'],
+            ['teferi, time raveler', '']
         ]
 
         test_data.forEach(function (data) {

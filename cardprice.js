@@ -39,7 +39,10 @@ async function screencap(card, set, fmt) {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
-    await page.goto(`https://www.mtggoldfish.com/price/${set.replace(" ", "+")}/${card.replace(" ", "+")}#${fmt}`, {waitUntil: 'domcontentloaded'});
+    let url = `https://www.mtggoldfish.com/price/${set.replace(/[ ]/g, "+")}/${card.replace(/[, ]+/g, "+")}#${fmt}`;
+    console.log(url);
+
+    await page.goto(url, {waitUntil: 'domcontentloaded'});
     
     const priceInfo = await page.$('body > main > div.clearfix > div.price-card-important.price-card-main-left > div > div.price-card-name');
 
