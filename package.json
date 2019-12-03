@@ -4,12 +4,17 @@
   "description": "takes a screenshot",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.0",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "discord.js": "^11.5.1",
+    "dotenv": "^8.2.0",
+    "mocha": "^6.2.2",
     "puppeteer": "^2.0.0"
   }
 }

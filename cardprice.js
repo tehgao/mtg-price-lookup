@@ -13,7 +13,20 @@ async function lookup(card, set, fmt) {
 
     let res = await axios.get(url);
 
-    let image = await screencap(res.data.name, res.data.set_name, fmt);
+    let officialCard = res.data.name;
+
+    var match = officialCard.match(/(.+) \/\//);
+    if(match && res.data.layout === 'adventure') {
+        officialCard = match[1];
+    } else {
+        officialCard = officialCard.replace(" // ", " ");
+    }
+
+    let officialSet = res.data.set_name;
+
+    officialSet = officialSet.replace(/[^a-zA-Z ]/, "");
+
+    let image = await screencap(officialCard, officialSet, fmt);
 
     if(image) {
         return image;
@@ -31,7 +44,6 @@ async function screencap(card, set, fmt) {
     const priceInfo = await page.$('body > main > div.clearfix > div.price-card-important.price-card-main-left > div > div.price-card-name');
 
     let image = await priceInfo.screenshot().then((result) => {
-        console.log(`Captured price info for ${card} from ${set}`);
         return result;
     }).catch(e => {
         console.log(`Failed to capture price info for ${card} from ${set}: ${e}`);
