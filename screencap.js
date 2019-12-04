@@ -6,7 +6,7 @@ async function screencap(url, locator, waitForSelector) {
 
     const defaultViewport = {
         height: 1920,
-        width: 1080,
+        width: 1920,
     };
 
     await page.goto(url, { waitUntil: 'domcontentloaded' });
