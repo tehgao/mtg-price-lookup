@@ -12,7 +12,7 @@ chai.should();
 
 const test_image_dir = "test_images/"
 
-describe.skip('Card Price', function () {
+describe('Card Price', function () {
     describe('lookup', function () {
         var test_data = [
             ['lightning bolt', 'alpha'],
