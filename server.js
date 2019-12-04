@@ -32,6 +32,8 @@ function handle_decklist(name, event, date, message) {
 
 function print_help(message) {
     var usage = "```\n" + `MTGStonks bot version ${process.env.npm_package_version}\n` + "Usage:\n" + "  - Price lookup: !price <card>(; <set>)\n" + "  - Decklist lookup: !decklist <username>'s list from the <event> on <date in MM/DD/YYYY>\n" + "```";
+
+    message.channel.send(usage);
 }
 
 client.on('ready', () => {
