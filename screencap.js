@@ -4,6 +4,11 @@ async function screencap(url, locator) {
     const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
     const page = await browser.newPage();
 
+    await page.setViewport({
+        width: 1920,
+        height: 1080,
+      });
+
     await page.goto(url, {waitUntil: 'domcontentloaded'});
     
     const priceInfo = await page.$(locator);
