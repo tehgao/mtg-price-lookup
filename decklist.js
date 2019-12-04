@@ -5,7 +5,7 @@ function get_deck_screenshot(user, event, date) {
     const url = get_url(event, date);
     const identifier = `#${user.replace(/[0-9]/g, "")}_-`.toLowerCase();
 
-    return screencap.screencap(url, identifier);
+    return screencap.screencap(url, identifier, `${identifier} > div.toggle-text.toggle-subnav > div.deck-list-img > div > img`);
 }
 
 function get_url(event, date) {

@@ -14,7 +14,7 @@ function handle_prices(card, set, message) {
     output = cardprice.lookup(card, set, "paper");
 
     output.then(function (img) {
-        message.channel.send(new discord.Attachment(img, 'result.png'));
+        message.channel.send(new discord.Attachment(img, 'stonks.png'));
     });
     message.channel.stopTyping();
 }
@@ -25,7 +25,7 @@ function handle_decklist(name, event, date, message) {
     output = decklist.get_deck_screenshot(name, event, date);
 
     output.then(function (img) {
-        message.channel.send(new discord.Attachment(img, 'result.png'));
+        message.channel.send(new discord.Attachment(img, 'decklist.png'));
     });
     message.channel.stopTyping();
 }
