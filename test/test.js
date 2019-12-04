@@ -10,7 +10,7 @@ var fs = require("fs");
 chai.use(chaiAsPromised);
 chai.should();
 
-describe.skip('Card Price', function () {
+describe('Card Price', function () {
     describe('lookup', function () {
         var test_data = [
             ['lightning bolt', 'alpha'],

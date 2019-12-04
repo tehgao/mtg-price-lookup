@@ -1,7 +1,7 @@
 var moment = require('moment');
 var screencap = require('./screencap');
 
-function get_deck_screenshot(event, date, user) {
+function get_deck_screenshot(user, event, date) {
     const url = get_url(event, date);
     const identifier = `#${user}_-`.toLowerCase();
 
