@@ -10,7 +10,7 @@ var fs = require("fs");
 chai.use(chaiAsPromised);
 chai.should();
 
-describe('Card Price', function () {
+describe.skip('Card Price', function () {
     describe('lookup', function () {
         var test_data = [
             ['lightning bolt', 'alpha'],
@@ -54,7 +54,23 @@ describe('Decklist', function() {
         it('should generate a basic decklist image', function(done) {
             this.timeout(0);
 
-            const img = decklist.get_deck_screenshot("modern league", "12/03/2019", "twistedwombat");
+            const img = decklist.get_deck_screenshot("sightwinner", "modern league", "12/03/2019");
+
+            img.then(function(img) {
+                fs.writeFile("decklist.png", img, function(err) {
+                    if(err) {
+                        done(err);
+                    } else {
+                        done();
+                    }
+                });
+            });
+        });
+
+        it('should filter out numbers from usernames', function(done) {
+            this.timeout(0);
+
+            const img = decklist.get_deck_screenshot("deathnote1999", "modern league", "12/03/2019");
 
             img.then(function(img) {
                 fs.writeFile("decklist.png", img, function(err) {

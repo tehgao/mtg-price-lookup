@@ -9,7 +9,7 @@ async function screencap(url, locator) {
         height: 1080,
       });
 
-    await page.goto(url, {waitUntil: 'domcontentloaded'});
+    await page.goto(url, {waitUntil: 'networkidle2'});
     
     const priceInfo = await page.$(locator);
 

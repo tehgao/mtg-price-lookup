@@ -1,7 +1,7 @@
 {
   "name": "mtg-price-lookup",
-  "version": "1.0.0",
-  "description": "simple node.js discord bot that scrapes mtggoldfish for price info",
+  "version": "1.0.1",
+  "description": "simple node.js discord bot that scrapes stuff",
   "main": "server.js",
   "scripts": {
     "test": "mocha"
