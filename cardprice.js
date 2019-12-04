@@ -26,6 +26,13 @@ async function lookup(card, set, fmt) {
 
     officialSet = officialSet.replace(/[^a-zA-Z0-9 ]/, "");
 
+    // stupid edge cases
+    if(officialSet.match(/^Modern Masters 20[0-9]{2}$/)) {
+        officialSet = officialSet + " Edition";
+    } else if(officialSet.match(/^Magic 20[0-9]{2}$/)) {
+        officialSet = officialSet + " Core Set";
+    }
+
     let image = await get_price_data(officialCard, officialSet, fmt);
 
     if (image) {
