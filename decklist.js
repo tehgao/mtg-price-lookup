@@ -3,9 +3,7 @@ var screencap = require('./screencap');
 
 function get_deck_screenshot(user, event, date) {
     const url = get_url(event, date);
-    const identifier = `#${user.replace(/[0-9]/g, "")}_-`.toLowerCase();
-
-    console.log(`${url}, ${identifier}`);
+    const identifier = `[id^="${user.replace(/[0-9]/g, "")}"]`.toLowerCase();
 
     return screencap.screencap(url, identifier, `${identifier} > div.toggle-text.toggle-subnav > div.deck-list-img > div > img`);
     // return screencap.screencap(url, identifier);
