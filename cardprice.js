@@ -11,7 +11,14 @@ async function lookup(card, set, fmt) {
         url = `https://api.scryfall.com/cards/named?fuzzy=${card}&set=${set.replace(/\s/g, "")}`;
     }
 
-    let res = await axios.get(url);
+    let res;
+
+    try {
+        res = await axios.get(url);
+    } catch (e) {
+        console.log(`Error looking up card ${card} from set ${set} in scryfall: ${e}`);
+        return false;
+    }
 
     let officialCard = res.data.name;
 
@@ -27,9 +34,9 @@ async function lookup(card, set, fmt) {
     officialSet = officialSet.replace(/[^a-zA-Z0-9 ]/, "");
 
     // stupid edge cases
-    if(officialSet.match(/^Modern Masters 20[0-9]{2}$/)) {
+    if (officialSet.match(/^Modern Masters 20[0-9]{2}$/)) {
         officialSet = officialSet + " Edition";
-    } else if(officialSet.match(/^Magic 20[0-9]{2}$/)) {
+    } else if (officialSet.match(/^Magic 20[0-9]{2}$/)) {
         officialSet = officialSet + " Core Set";
     }
 
