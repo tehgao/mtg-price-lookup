@@ -99,10 +99,26 @@ describe('Decklist', function () {
             });
         });
 
-        it('idk why this doesn\'t work', function (done) {
+        it('capture lists that appear outside of the view correctly', function (done) {
             this.timeout(0);
 
             const img = decklist.get_deck_screenshot("sepomon", "modern league", "12/03/2019");
+
+            img.then(function (img) {
+                fs.writeFile(test_image_dir + "decklist_idk.png", img, function (err) {
+                    if (err) {
+                        done(err);
+                    } else {
+                        done();
+                    }
+                });
+            });
+        });
+
+        it('capture lists from premier events', function (done) {
+            this.timeout(0);
+
+            const img = decklist.get_deck_screenshot("butakov", "modern event", "12/01/2019");
 
             img.then(function (img) {
                 fs.writeFile(test_image_dir + "decklist_idk.png", img, function (err) {

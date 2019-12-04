@@ -22,11 +22,14 @@ function handle_prices(card, set, message) {
 function handle_decklist(name, event, date, message) {
     message.channel.startTyping();
 
-    output = decklist.get_deck_screenshot(name, event, date);
+    // this is kind of ugly
+    message.channel.send(`Retrieving ${name}'s decklist from the ${event} on ${date}...`)
+        .then(function (msg) {
+            decklist.get_deck_screenshot(name, event, date).then(function (img) {
+                msg.edit(new discord.Attachment(img, `decklist-${name}-${event}.png`));
+            });
+        });
 
-    output.then(function (img) {
-        message.channel.send(new discord.Attachment(img, 'decklist.png'));
-    });
     message.channel.stopTyping();
 }
 
