@@ -105,3 +105,6 @@ dist
 
 # PNG output images
 *.png
+
+# test image directory
+test_images/

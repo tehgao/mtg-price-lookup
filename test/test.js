@@ -10,6 +10,8 @@ var fs = require("fs");
 chai.use(chaiAsPromised);
 chai.should();
 
+const test_image_dir = "test_images/"
+
 describe('Card Price', function () {
     describe('lookup', function () {
         var test_data = [
@@ -18,16 +20,26 @@ describe('Card Price', function () {
             ['wear // tear', 'dragon\'s maze'],
             ['lightning bolt', ''],
             ['Borrowing 100,000 Arrows', 'masters 25'],
-            ['teferi, time raveler', '']
+            ['teferi, time raveler', ''],
+            ['burning earth', ''],
+            ['liliana of the veil', 'modern masters 2017'],
         ]
 
         test_data.forEach(function (data) {
-            it(`correctly retrieves data for card ${data[0]} from set ${data[1]}`, function () {
+            it(`correctly retrieves data for card ${data[0]} from set ${data[1]}`, function (done) {
                 this.timeout(0);
 
                 const output = cardprice.lookup(data[0], data[1], "paper");
 
-                return output.should.be.fulfilled;
+                output.then(function(img) {
+                    fs.writeFile(test_image_dir + `card-${data[0].replace(/[^a-zA-Z0-9]/g, "")}-${data[1].replace(/[^a-zA-Z0-9]/g, "")}.png`, img, function(err) {
+                        if(err) {
+                            done(err);
+                        } else {
+                            done();
+                        }
+                    });
+                });
             });
         });
     });
@@ -57,7 +69,7 @@ describe('Decklist', function() {
             const img = decklist.get_deck_screenshot("twistedwombat", "modern league", "12/03/2019");
 
             img.then(function(img) {
-                fs.writeFile("decklist_basic.png", img, function(err) {
+                fs.writeFile(test_image_dir + "decklist_basic.png", img, function(err) {
                     if(err) {
                         done(err);
                     } else {
@@ -73,7 +85,7 @@ describe('Decklist', function() {
             const img = decklist.get_deck_screenshot("deathnote1999", "modern league", "12/03/2019");
 
             img.then(function(img) {
-                fs.writeFile("decklist_numbers.png", img, function(err) {
+                fs.writeFile(test_image_dir + "decklist_numbers.png", img, function(err) {
                     if(err) {
                         done(err);
                     } else {

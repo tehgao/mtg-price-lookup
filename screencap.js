@@ -14,7 +14,7 @@ async function screencap(url, locator, waitForSelector) {
     const priceInfo = await page.$(locator);
     if (waitForSelector) {
         await page.waitForSelector(waitForSelector);
-        await page.waitFor(1000);
+        await page.waitFor(500);
     }
 
     let image = await priceInfo.screenshot().then((result) => {
